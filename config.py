@@ -21,7 +21,7 @@ def is_enabled(value, default):
 API_ID = int(environ.get("API_ID", "26042863"))
 API_HASH = environ.get("API_HASH", "d4fabc00b0345cd3f0ccdc0c9b750f6e")
 BOT_TOKEN = environ.get("BOT_TOKEN", "")
-AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '').split()] # give channel id with seperate space. Ex : ('-10073828 -102782829 -1007282828')
+AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '-1001877309572').split()] # give channel id with seperate space. Ex : ('-10073828 -102782829 -1007282828')
 
 PICS = (environ.get('PICS', 'https://telegra.ph/file/3c65c2642f4339a8d3caa.jpg')).split() # Bot Start Picture
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '919169586').split()]
