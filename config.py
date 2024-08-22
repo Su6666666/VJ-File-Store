@@ -59,8 +59,8 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 VERIFY_MODE = bool(environ.get('VERIFY_MODE', True)) # Set True or False
 
 # If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-SHORTLINK_API = environ.get("SHORTLINK_API", "49be579e7f37d56e8f6987ba486b0aff1d0d1f77") # shortlink api
-SHORTLINK_URL = environ.get("SHORTLINK_URL", "ziplinker.net") # shortlink domain without https://
+SHORTLINK_API = environ.get("SHORTLINK_API", "58e579aa6fe2c1cc91a7c2f1e79b57e9ab380c6a") # shortlink api
+SHORTLINK_URL = environ.get("SHORTLINK_URL", "yamlinks.com") # shortlink domain without https://
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_To_Watch_SG_Videos/4") # how to open link 
 
 # Website Info:
