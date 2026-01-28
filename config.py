@@ -28,7 +28,7 @@ PORT = environ.get("PORT", "8080")
 
 # Force Subscribe Information
 FORCE_SUB_MODE = bool(environ.get('FORCE_SUB_MODE', True)) # Set True or False
-FORCE_SUB_CHANNEL = int(environ.get("FORCE_SUB_CHANNEL", "0")) # Your Channel ID (Start with -100)
+FORCE_SUB_CHANNEL = int(environ.get("FORCE_SUB_CHANNEL", "-1001877309572")) # Your Channel ID (Start with -100)
 
 # Clone Info :-
 CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
