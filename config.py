@@ -2,7 +2,6 @@
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-
 import re
 import os
 from os import environ
@@ -26,6 +25,10 @@ PICS = (environ.get('PICS', 'https://telegra.ph/file/3c65c2642f4339a8d3caa.jpg')
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '919169586').split()]
 BOT_USERNAME = environ.get("BOT_USERNAME", "File_Stores_Bot") # without @
 PORT = environ.get("PORT", "8080")
+
+# Force Subscribe Information
+FORCE_SUB_MODE = bool(environ.get('FORCE_SUB_MODE', True)) # Set True or False
+FORCE_SUB_CHANNEL = int(environ.get("FORCE_SUB_CHANNEL", "0")) # Your Channel ID (Start with -100)
 
 # Clone Info :-
 CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
@@ -86,4 +89,3 @@ URL = environ.get("URL", "https://ltd-daffy-subhajitghoshbotggg-6b1cf758.koyeb.a
 # Don't Remove Credit Tg - @VJ_Botz
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ01
-    
