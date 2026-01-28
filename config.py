@@ -26,26 +26,23 @@ ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ
 BOT_USERNAME = environ.get("BOT_USERNAME", "File_Stores_Bot") # without @
 PORT = environ.get("PORT", "8080")
 
+# Restriction Information (নতুন যোগ করা হয়েছে)
+# ফাইল ফরওয়ার্ড বন্ধ করতে চাইলে "True" রাখুন, চালু করতে চাইলে "False" দিন।
+PROTECT_CONTENT = environ.get('PROTECT_CONTENT', "True") 
+
 # Force Subscribe Information
-# এখানে আপনার ব্যাকআপ চ্যানেলের আইডি এবং ইউজারনেম দেওয়া হয়েছে
-AUTH_CHANNEL = int(environ.get("AUTH_CHANNEL", "-1001877309572")) # আপনার ব্যাকআপ চ্যানেলের আইডি
-FORCE_SUB_CHANNEL = environ.get("FORCE_SUB_CHANNEL", "Sgbackup") # চ্যানেলের ইউজারনেম (@ ছাড়া)
+AUTH_CHANNEL = int(environ.get("AUTH_CHANNEL", "-1001877309572")) 
+FORCE_SUB_CHANNEL = environ.get("FORCE_SUB_CHANNEL", "Sgbackup") 
 
 # Clone Info :-
-CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
-
-# If Clone Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-CLONE_DB_URI = environ.get("CLONE_DB_URI", "")
-CDB_NAME = environ.get("CDB_NAME", "clonetechvj")
+CLONE_MODE = bool(environ.get('CLONE_MODE', False)) 
 
 # Database Information
 DB_URI = environ.get("DB_URI", "mongodb+srv://SGBACKUP6:SGBACKUP@cluster0.dfdixw8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DB_NAME = environ.get("DB_NAME", "techvj")
 
 # Auto Delete Information
-AUTO_DELETE_MODE = bool(environ.get('AUTO_DELETE_MODE', True)) # Set True or False
-
-# If Auto Delete Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
+AUTO_DELETE_MODE = bool(environ.get('AUTO_DELETE_MODE', True)) 
 AUTO_DELETE = int(environ.get("AUTO_DELETE", "30")) # Time in Minutes
 AUTO_DELETE_TIME = int(environ.get("AUTO_DELETE_TIME", "1800")) # Time in Seconds
 
@@ -60,26 +57,20 @@ BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
 # Verify Info :-
-VERIFY_MODE = bool(environ.get('VERIFY_MODE', False)) # Set True or False
-
-# If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-SHORTLINK_API = environ.get("SHORTLINK_API", "5f131512991332ba5f14d4ecbe73367717f19774") # shortlink api
-SHORTLINK_URL = environ.get("SHORTLINK_URL", "gplinks.com") # shortlink domain without https://
-VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_To_Watch_SG_Videos/4") # how to open link 
+VERIFY_MODE = bool(environ.get('VERIFY_MODE', False)) 
+SHORTLINK_API = environ.get("SHORTLINK_API", "5f131512991332ba5f14d4ecbe73367717f19774") 
+SHORTLINK_URL = environ.get("SHORTLINK_URL", "gplinks.com") 
+VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_To_Watch_SG_Videos/4") 
 
 # Website Info:
-WEBSITE_URL_MODE = bool(environ.get('WEBSITE_URL_MODE', False)) # Set True or False
-
-# If Website Url Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-WEBSITE_URL = environ.get("WEBSITE_URL", "") # For More Information Check Video On Yt - @Tech_VJ
+WEBSITE_URL_MODE = bool(environ.get('WEBSITE_URL_MODE', False)) 
+WEBSITE_URL = environ.get("WEBSITE_URL", "") 
 
 # File Stream Config
-STREAM_MODE = bool(environ.get('STREAM_MODE', False)) # Set True or False
-
-# If Stream Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
+STREAM_MODE = bool(environ.get('STREAM_MODE', False)) 
 MULTI_CLIENT = False
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
-PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
+PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  
 if 'DYNO' in environ:
     ON_HEROKU = True
 else:
