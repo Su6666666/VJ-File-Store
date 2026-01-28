@@ -48,6 +48,14 @@ AUTO_DELETE_TIME = int(environ.get("AUTO_DELETE_TIME", "1800")) # Time in Second
 # Channel Information
 LOG_CHANNEL = int(environ.get("LOG_CHANNEL", "-1001994332079"))
 
+# --- ADDED FEATURES START ---
+# Force Subscribe Channel ID (e.g. -100xxxxxxxxxx)
+AUTH_CHANNEL = int(environ.get("AUTH_CHANNEL", "")) 
+
+# Content Restriction (True = Forwarding Disabled, False = Forwarding Enabled)
+PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
+# --- ADDED FEATURES END ---
+
 # File Caption Information
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", f"{script.CAPTION}")
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
@@ -86,4 +94,3 @@ URL = environ.get("URL", "https://ltd-daffy-subhajitghoshbotggg-6b1cf758.koyeb.a
 # Don't Remove Credit Tg - @VJ_Botz
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ01
-    
