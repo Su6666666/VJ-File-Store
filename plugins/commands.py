@@ -282,19 +282,19 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}')]])
                 )
             
-            # Single File Auto-delete Notification (ফিক্স করা হয়েছে)
+            # Single File Auto-delete Logic (Fix)
             if AUTO_DELETE_MODE == True:
                 k = await client.send_message(
                     chat_id = message.from_user.id, 
                     text=f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} minutes</u></b> 🫥 (Due to Copyright Issues).\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</b>"
                 )
                 await asyncio.sleep(AUTO_DELETE_TIME)
-                try: await msg.delete()
-                except: pass
-                if g: 
-                    try: await g.delete()
-                    except: pass
-                await k.edit_text("<b>Your File/Video is successfully deleted!!!</b>")
+                try:
+                    await msg.delete()
+                    if g: await g.delete()
+                    await k.edit_text("<b>Your File/Video is successfully deleted!!!</b>")
+                except:
+                    pass
             return
         except Exception as e:
             logger.error(e)
@@ -339,16 +339,16 @@ async def start(client, message):
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}')]])
         )
     
-    # Single File Auto-delete Notification (ফিক্স করা হয়েছে)
+    # Single File Auto-delete Logic (Fix)
     if AUTO_DELETE_MODE == True:
         k = await client.send_message(
             chat_id = message.from_user.id, 
             text=f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} minutes</u></b> 🫥 (Due to Copyright Issues).\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</b>"
         )
         await asyncio.sleep(AUTO_DELETE_TIME)
-        try: await x.delete()
-        except: pass
-        if g:
-            try: await g.delete()
-            except: pass
-        await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")
+        try:
+            await x.delete()
+            if g: await g.delete()
+            await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")
+        except:
+            pass
