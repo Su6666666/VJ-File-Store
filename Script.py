@@ -100,8 +100,6 @@ If You Want To Remove Api Then Copy This And Send To Bot - `/api None`"""
 🔻 /api - sᴇᴛ ʏᴏᴜʀ ᴜʀʟ sʜᴏʀᴛɴᴇʀ ᴀᴄᴄᴏᴜɴᴛ ᴀᴘɪ 
 ᴇx - /api ʙᴀᴏᴡɢᴡᴋʟᴀᴀʙᴀᴋʟ
 
-🔻 /status - ᴄʜᴇᴄᴋ ʙᴏᴛ ᴜsᴇʀs ᴀɴᴅ sʏsᴛᴇᴍ sᴛᴀᴛᴜs
-
 🔻 /deletecloned - ᴜsᴇ ᴛʜɪs ғᴏʀ ᴅᴇʟᴇᴛᴇ ʏᴏᴜʀ ᴄʟᴏɴᴇ ʙᴏᴛ 
 ᴇx - /deletecloned ʏᴏᴜʀʙᴏᴛᴛᴏᴋᴇɴ
 
@@ -142,8 +140,6 @@ Nᴀᴍᴇ - {}</b>
 🌐 Tɪᴍᴇᴢᴏɴᴇ : <code>Asia/Kolkata</code>
 🛠️ Bᴜɪʟᴅ Sᴛᴀᴛᴜs: <code>v2.7.1 [ Sᴛᴀʙʟᴇ ]</code></b>"""
 
-    STATUS_TXT = """<b>📊 ʙᴏᴛ sᴛᴀᴛᴜs 
-
-👥 ᴛᴏᴛᴀʟ ᴜsᴇʀs: <code>{}</code>
-🔋 ᴜᴘᴛɪᴍᴇ: <code>Running on Koyeb</code>
-🛠️ ᴠᴇʀsɪᴏɴ: <code>v2.7.1</code></b>"""
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
