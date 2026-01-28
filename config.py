@@ -50,10 +50,10 @@ LOG_CHANNEL = int(environ.get("LOG_CHANNEL", "-1001994332079"))
 
 # --- ADDED FEATURES START ---
 # Force Subscribe Channel ID (e.g. -100xxxxxxxxxx)
-AUTH_CHANNEL = int(environ.get("AUTH_CHANNEL", "")) 
+AUTH_CHANNEL = int(environ.get("AUTH_CHANNEL", "-1001877309572")) 
 
 # Content Restriction (True = Forwarding Disabled, False = Forwarding Enabled)
-PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
+PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "True")), True)
 # --- ADDED FEATURES END ---
 
 # File Caption Information
