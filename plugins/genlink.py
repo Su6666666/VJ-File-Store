@@ -5,7 +5,7 @@
 import re
 from pyrogram import filters, Client, enums
 from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, UsernameInvalid, UsernameNotModified
-from config import ADMINS, LOG_CHANNEL, PUBLIC_FILE_STORE, WEBSITE_URL, WEBSITE_URL_MODE, PROTECT_CONTENT
+from config import ADMINS, LOG_CHANNEL, PUBLIC_FILE_STORE, WEBSITE_URL, WEBSITE_URL_MODE
 from plugins.database import unpack_new_file_id
 from plugins.users_api import get_user, get_short_link
 import re
@@ -37,9 +37,7 @@ async def incoming_gen_link(bot, message):
     username = (await bot.get_me()).username
     file_type = message.media
     file_id, ref = unpack_new_file_id((getattr(message, file_type.value)).file_id)
-    
-    # If global protect is on, use 'filep_' to ensure it stays restricted
-    string = 'filep_' if PROTECT_CONTENT else 'file_'
+    string = 'file_'
     string += file_id
     outstr = base64.urlsafe_b64encode(string.encode("ascii")).decode().strip("=")
     user_id = message.from_user.id
@@ -64,13 +62,15 @@ async def gen_link_s(bot, message):
     file_type = replied.media
     if file_type not in [enums.MessageMediaType.VIDEO, enums.MessageMediaType.AUDIO, enums.MessageMediaType.DOCUMENT]:
         return await message.reply("**ʀᴇᴘʟʏ ᴛᴏ ᴀ sᴜᴘᴘᴏʀᴛᴇᴅ ᴍᴇᴅɪᴀ**")
+    if message.has_protected_content and message.chat.id not in ADMINS:
+        return await message.reply("okDa")
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
     
     file_id, ref = unpack_new_file_id((getattr(replied, file_type.value)).file_id)
-    
-    # Check if plink command OR global protect is enabled
-    is_protected = message.text.lower().strip() == "/plink" or PROTECT_CONTENT
-    string = 'filep_' if is_protected else 'file_'
-    
+    string = 'filep_' if message.text.lower().strip() == "/plink" else 'file_'
     string += file_id
     outstr = base64.urlsafe_b64encode(string.encode("ascii")).decode().strip("=")
     user_id = message.from_user.id
@@ -107,6 +107,10 @@ async def gen_link_batch(bot, message):
     f_msg_id = int(match.group(5))
     if f_chat_id.isnumeric():
         f_chat_id = int(("-100" + f_chat_id))
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
     
     match = regex.match(last)
     if not match:
@@ -126,21 +130,30 @@ async def gen_link_batch(bot, message):
         return await message.reply('Invalid Link specified.')
     except Exception as e:
         return await message.reply(f'Errors - {e}')
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
     
     sts = await message.reply("**ɢᴇɴᴇʀᴀᴛɪɴɢ ʟɪɴᴋ ғᴏʀ ʏᴏᴜʀ ᴍᴇssᴀɢᴇ**.\n**ᴛʜɪs ᴍᴀʏ ᴛᴀᴋᴇ ᴛɪᴍᴇ ᴅᴇᴘᴇɴᴅɪɴɢ ᴜᴘᴏɴ ɴᴜᴍʙᴇʀ ᴏғ ᴍᴇssᴀɢᴇs**")
+
     FRMT = "**ɢᴇɴᴇʀᴀᴛɪɴɢ ʟɪɴᴋ...**\n**ᴛᴏᴛᴀʟ ᴍᴇssᴀɢᴇs:** {total}\n**ᴅᴏɴᴇ:** {current}\n**ʀᴇᴍᴀɪɴɪɴɢ:** {rem}\n**sᴛᴀᴛᴜs:** {sts}"
+
     outlist = []
 
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
+
+    # file store without db channel
     og_msg = 0
     tot = 0
-    # Logic to determine if files should be protected
-    batch_protect = cmd.lower().strip() == "/pbatch" or PROTECT_CONTENT
-
     async for msg in bot.iter_messages(f_chat_id, l_msg_id, f_msg_id):
         tot += 1
         if msg.empty or msg.service:
             continue
         if not msg.media:
+            # only media messages supported.
             continue
         try:
             file_type = msg.media
@@ -154,8 +167,13 @@ async def gen_link_batch(bot, message):
                     "caption": caption,
                     "title": getattr(file, "file_name", ""),
                     "size": file.file_size,
-                    "protect": batch_protect, # Set based on command or config
+                    "protect": cmd.lower().strip() == "/pbatch",
                 }
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
+
                 og_msg +=1
                 outlist.append(file)
         except:
@@ -165,7 +183,6 @@ async def gen_link_batch(bot, message):
                 await sts.edit(FRMT.format(total=l_msg_id-f_msg_id, current=tot, rem=((l_msg_id-f_msg_id) - tot), sts="Saving Messages"))
             except:
                 pass
-
     with open(f"batchmode_{message.from_user.id}.json", "w+") as out:
         json.dump(outlist, out)
     post = await bot.send_document(LOG_CHANNEL, f"batchmode_{message.from_user.id}.json", file_name="Batch.json", caption="⚠️Generated for filestore.")
@@ -182,3 +199,7 @@ async def gen_link_batch(bot, message):
         await sts.edit(f"<b>⭕ ʜᴇʀᴇ ɪs ʏᴏᴜʀ ʟɪɴᴋ:\n\nContains `{og_msg}` files.\n\n🖇️ sʜᴏʀᴛ ʟɪɴᴋ :- {short_link}</b>")
     else:
         await sts.edit(f"<b>⭕ ʜᴇʀᴇ ɪs ʏᴏᴜʀ ʟɪɴᴋ:\n\nContains `{og_msg}` files.\n\n🔗 ᴏʀɪɢɪɴᴀʟ ʟɪɴᴋ :- {share_link}</b>")
+        
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
