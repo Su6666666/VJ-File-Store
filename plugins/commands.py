@@ -57,7 +57,7 @@ async def start(client, message):
                 buttons.append([InlineKeyboardButton("🔄 Try Again", url=f"https://t.me/{BOT_USERNAME}?start={message.command[1]}")])
             
             await message.reply_text(
-                text="<b>Hello {message.from_user.mention},\n\nYou must join our backup channel to use this bot and access files.\n\nPlease join and try again!</b>",
+                text="<b>You must join our backup channel to use this bot and access files.\n\nPlease join and try again!</b>",
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
             return
