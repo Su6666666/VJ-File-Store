@@ -64,7 +64,7 @@ def get_size(size):
         size /= 1024.0
     return "%.2f %s" % (size, units[i])
 
-# Status Command (নতুন যুক্ত করা হয়েছে)
+# Status Command
 @Client.on_message(filters.command("status") & filters.incoming)
 async def status_handler(client, message):
     users_count = await db.total_users_count()
